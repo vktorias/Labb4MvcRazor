@@ -1,0 +1,21 @@
+﻿@model List<LABB4MVCRAZOR.Models.Lending>
+
+<h1>Lent Books</h1>
+
+<ul>
+    @foreach (var lending in Model)
+    {
+        <li>
+            <strong>@lending.Book.Title</strong> by @lending.Book.Author 
+            (Published @lending.Book.PublicationYear) - Lent by <strong>@lending.Customer.CustomerName</strong>
+            @if (lending.Returned)
+            {
+                <span style="color: green;">(Returned)</span>
+            }
+            else
+            {
+                <span style="color: red;">(Not Returned)</span>
+            }
+        </li>
+    }
+</ul>

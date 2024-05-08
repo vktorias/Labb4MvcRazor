@@ -1,0 +1,36 @@
+﻿@model List<LABB4MVCRAZOR.Models.Customer>
+
+@{
+    ViewData["Title"] = "Search Customers";
+}
+
+<h1>Search Customers</h1>
+
+<form asp-controller="Customers" asp-action="SearchCustomer" method="get">
+    <div class="form-group">
+        <label for="searchValue" class="control-label">Search by Name or ID:</label>
+        <input type="text" id="searchValue" name="searchValue" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (ViewBag.SearchPerformed != null && ViewBag.SearchPerformed)
+{
+    if (Model != null && Model.Any())
+    {
+        <h1>Search Results</h1>
+        foreach (var customer in Model)
+        {
+            <div>
+                <h4><strong>Customer Details</strong></h4>
+                <strong>Customer Name:</strong> @customer.CustomerName<br />
+                <strong>Email:</strong> @customer.Email<br />
+                <strong>Phone Number:</strong> @customer.PhoneNumber
+            </div>
+        }
+    }
+    else
+    {
+        <p>No results found.</p>
+    }
+}
